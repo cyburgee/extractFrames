@@ -1,0 +1,10 @@
+
+*.mp4
+
+*.jpg
+
+*.dylib
+
+*.rb
+
+bin*

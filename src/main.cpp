@@ -120,7 +120,7 @@ int main(int argc, const char * argv[]) {
     writer.open(filePrefix, CV_FOURCC('M', 'J', 'P', 'G'), vid.get(CV_CAP_PROP_FPS), frameSize);
     
     vid.set(CV_CAP_PROP_POS_FRAMES, (double)startIdx);
-    for (int i = startIdx; i <= endIdx + 50 ; i++){
+    for (int i = startIdx; i <= endIdx; i++){
         //stringstream output;
         //output << filePrefix << (i - startIdx) << ".jpg";
         //string outputFile = output.str();

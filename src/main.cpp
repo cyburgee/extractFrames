@@ -104,25 +104,45 @@ int main(int argc, const char * argv[]) {
     for(int i = 0; i < startIdx; i++){
         vid.read(trash);
     }*/
-    vid.set(CV_CAP_PROP_POS_FRAMES, (double)startIdx);
     //cvSetCaptureProperty(vid, CV_CAP_PROP_POS_FRAMES, (double)startIdx);
-    vector<int> compression_params;
+    //vector<int> compression_params;
     //compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
-    compression_params.push_back(CV_IMWRITE_JPEG_QUALITY);
-    compression_params.push_back(1);
+    //compression_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+    //compression_params.push_back(1);
+    vid.set(CV_CAP_PROP_POS_FRAMES, (double)startIdx);
     
-    for (int i = startIdx; i <= endIdx ; i++){
-        stringstream output;
-        output << filePrefix << (i - startIdx) << ".jpg";
-        string outputFile = output.str();
+    double dWidth = vid.get(CV_CAP_PROP_FRAME_WIDTH);
+    double dHeight = vid.get(CV_CAP_PROP_FRAME_HEIGHT);
+    
+    Size frameSize(static_cast<int>(dWidth),static_cast<int>(dHeight));
+    cout << vid.get(CV_CAP_PROP_FOURCC) << endl;
+    cout << vid.get(CV_CAP_PROP_FPS) << endl;
+    writer.open(filePrefix, vid.get(CV_CAP_PROP_FOURCC), vid.get(CV_CAP_PROP_FPS), frameSize);
+    
+    vid.set(CV_CAP_PROP_POS_FRAMES, (double)startIdx);
+    for (int i = startIdx; i <= endIdx + 50 ; i++){
+        //stringstream output;
+        //output << filePrefix << (i - startIdx) << ".jpg";
+        //string outputFile = output.str();
         Mat frame;
-        while (!vid.read(frame))
-            cout << "couldn't get next frame" << endl;
+        if (!vid.read(frame)){
+            cerr << "couldn't get next frame" << endl;
+            goto end_read;
+        }
         
-        imwrite(outputFile, frame);
+        if (writer.isOpened()){
+            writer.write(frame);
+        }
+        else {
+            cout << "fuckit" << endl;
+        }
+        //imwrite(outputFile, frame);
     }
+    //writer.release();
     
-    
+    end_read:
 
+    //writer.release();
+    //cout << "released" << endl;
     return 0;
 }

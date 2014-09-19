@@ -20,6 +20,7 @@ using namespace std;
 using namespace cv;
 
 VideoCapture vid;
+VideoWriter writer;
 //vector<Mat> frameBuffer;
 
 #endif

@@ -59,7 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-i &quot;/tmp/160 Greatest Arnold Schwarzenegger Quotes.mp4&quot; -s 1613 -e 1638 -o &quot;/tmp/loop.mp4&quot;"
+            argument = "-i &quot;/tmp/160 Greatest Arnold Schwarzenegger Quotes.mp4&quot; -s 1613 -e 1638 -o &quot;/tmp/loop.avi&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -117,7 +117,7 @@ int main(int argc, const char * argv[]) {
     Size frameSize(static_cast<int>(dWidth),static_cast<int>(dHeight));
     cout << vid.get(CV_CAP_PROP_FOURCC) << endl;
     cout << vid.get(CV_CAP_PROP_FPS) << endl;
-    writer.open(filePrefix, vid.get(CV_CAP_PROP_FOURCC), vid.get(CV_CAP_PROP_FPS), frameSize);
+    writer.open(filePrefix, CV_FOURCC('M', 'J', 'P', 'G'), vid.get(CV_CAP_PROP_FPS), frameSize);
     
     vid.set(CV_CAP_PROP_POS_FRAMES, (double)startIdx);
     for (int i = startIdx; i <= endIdx + 50 ; i++){
